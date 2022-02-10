@@ -3,4 +3,4 @@
 
 export RMR_SEED_RT="routes.txt"
 
-./sender $@
+./sender "$@"

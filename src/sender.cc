@@ -4,19 +4,26 @@
 #include <cstring>
 
 #include <rmr/rmr.h>
+
+#include <errno.h>
+
 #include "aux.h"
 
 /* The port at which we listen to */
 #define PORT "4561"
 
 /* The payload of the message */
-#define MESSAGE "Message Payload"
 
 using namespace std;
 
 int main(int argc, char **argv) {
 	void *rmr_ctx;
 	rmr_mbuf_t *msg = NULL, *reply;
+
+	if (argc < 2) {
+		std::cerr << "Usage: " << argv[0] << " <msg>" << std::endl;
+		return -EINVAL;
+	}
 
 	std::cout << "starting up" << std::endl;
 
@@ -49,11 +56,11 @@ int main(int argc, char **argv) {
 		msg = rmr_alloc_msg(rmr_ctx, RMR_DEF_SIZE);
 
 		/* Copy the message payload */
-		memcpy(msg->payload, MESSAGE, std::strlen(MESSAGE));
+		memcpy(msg->payload, argv[1], std::strlen(argv[1]));
 		/* Need to define an endpoint */
 
 		msg->mtype = 0;
-		msg->len = std::strlen(MESSAGE);
+		msg->len = std::strlen(argv[1]);
 		msg->state = RMR_OK;
 
 		/* Send the message */

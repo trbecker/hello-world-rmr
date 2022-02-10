@@ -2,6 +2,7 @@
 #include <chrono>
 #include <thread>
 #include <cstring>
+#include <string>
 
 #include <rmr/rmr.h>
 #include "aux.h"
@@ -44,7 +45,10 @@ int main(int argc, char **argv) {
 			continue;
 		}
 
-		std::cout << "rcv state" << rmr_error(msg->state) << std::endl;
+		std::string payload((const char *)msg->payload, msg->len);
+
+		std::cout << "rcv state " << rmr_error(msg->state)
+			<< " payload " << payload << std::endl;
 	}
 
 	return 0;
