@@ -1,0 +1,25 @@
+diff --git a/e2sim/e2sm_examples/kpm_e2sm/CMakeLists.txt b/e2sim/e2sm_examples/kpm_e2sm/CMakeLists.txt
+index 66fbf41..47ca6c3 100644
+--- a/e2sim/e2sm_examples/kpm_e2sm/CMakeLists.txt
++++ b/e2sim/e2sm_examples/kpm_e2sm/CMakeLists.txt
+@@ -17,7 +17,7 @@
+ 
+ 
+ project( ricxfcpp )
+-cmake_minimum_required( VERSION 3.14 )
++cmake_minimum_required( VERSION 3.10 )
+ 
+ set( major_version "1" )               # until CI supports auto tagging; must hard set
+ set( minor_version "0" )
+diff --git a/e2sim/e2sm_examples/kpm_e2sm/src/kpm/CMakeLists.txt b/e2sim/e2sm_examples/kpm_e2sm/src/kpm/CMakeLists.txt
+index 263d98c..d26dffd 100644
+--- a/e2sim/e2sm_examples/kpm_e2sm/src/kpm/CMakeLists.txt
++++ b/e2sim/e2sm_examples/kpm_e2sm/src/kpm/CMakeLists.txt
+@@ -31,6 +31,7 @@ target_link_libraries( kpm_sim pthread)
+ 
+ install( 
+     TARGETS kpm_sim
++    RUNTIME DESTINATION bin
+     DESTINATION ${install_bin}
+ )
+ 
